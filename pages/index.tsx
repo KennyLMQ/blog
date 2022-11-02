@@ -5,14 +5,14 @@ import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import { sortedBlogPost, allCoreContent } from 'pliny/utils/contentlayer'
 import { InferGetStaticPropsType } from 'next'
-import { NewsletterForm } from 'pliny/ui/NewsletterForm'
 import { allBlogs } from 'contentlayer/generated'
 import type { Blog } from 'contentlayer/generated'
 
 const MAX_DISPLAY = 5
 
 export const getStaticProps = async () => {
-  const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
+  // const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
+  const sortedPosts = [] as Blog[]
   const posts = allCoreContent(sortedPosts)
 
   return { props: { posts } }
@@ -27,9 +27,9 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Latest
           </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+          {/* <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             {siteMetadata.description}
-          </p>
+          </p> */}
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
@@ -92,11 +92,6 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           >
             All Posts &rarr;
           </Link>
-        </div>
-      )}
-      {siteMetadata.newsletter.provider && (
-        <div className="flex items-center justify-center pt-4">
-          <NewsletterForm />
         </div>
       )}
     </>
