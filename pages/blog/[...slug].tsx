@@ -10,7 +10,9 @@ const DEFAULT_LAYOUT = 'PostLayout';
 
 export async function getStaticPaths() {
   return {
-    paths: allBlogs.map((p) => ({ params: { slug: p.slug.split('/') } })),
+    paths: allBlogs
+      .filter((b) => b.draft === false)
+      .map((p) => ({ params: { slug: p.slug.split('/') } })),
     fallback: false,
   };
 }
