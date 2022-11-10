@@ -10,7 +10,7 @@ export const POSTS_PER_PAGE = 5;
 
 export const getStaticProps = async () => {
   const allPosts = sortedBlogPost(allBlogs) as Blog[];
-  const completedPosts = allPosts.filter((post) => post.draft === false);
+  const completedPosts = allPosts.filter((post) => post?.draft === false);
   const initialDisplayPosts = completedPosts.slice(0, POSTS_PER_PAGE);
   const pagination = {
     currentPage: 1,
