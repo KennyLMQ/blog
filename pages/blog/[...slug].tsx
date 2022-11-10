@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 export const getStaticProps = async ({ params }) => {
   const slug = (params.slug as string[]).join('/');
   const sortedPosts = sortedBlogPost(allBlogs) as Blog[];
-  const completedPosts = sortedPosts.filter((post) => post?.draft === false);
+  const completedPosts = sortedPosts.filter((post) => post.draft === false);
   const postIndex = completedPosts.findIndex((p) => p.slug === slug);
   const prevContent = completedPosts[postIndex + 1] || null;
   const prev = prevContent ? coreContent(prevContent) : null;
