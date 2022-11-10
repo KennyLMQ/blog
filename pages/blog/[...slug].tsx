@@ -18,12 +18,13 @@ export async function getStaticPaths() {
 export const getStaticProps = async ({ params }) => {
   const slug = (params.slug as string[]).join('/')
   const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
-  const postIndex = sortedPosts.findIndex((p) => p.slug === slug)
-  const prevContent = sortedPosts[postIndex + 1] || null
+  const completedPosts = sortedPosts.filter((post) => post.draft === false)
+  const postIndex = completedPosts.findIndex((p) => p.slug === slug)
+  const prevContent = completedPosts[postIndex + 1] || null
   const prev = prevContent ? coreContent(prevContent) : null
-  const nextContent = sortedPosts[postIndex - 1] || null
+  const nextContent = completedPosts[postIndex - 1] || null
   const next = nextContent ? coreContent(nextContent) : null
-  const post = sortedPosts.find((p) => p.slug === slug)
+  const post = completedPosts.find((p) => p.slug === slug)
   const authorList = post.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)

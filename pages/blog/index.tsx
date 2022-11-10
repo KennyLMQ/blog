@@ -9,17 +9,18 @@ import type { Blog } from 'contentlayer/generated'
 export const POSTS_PER_PAGE = 5
 
 export const getStaticProps = async () => {
-  const posts = sortedBlogPost(allBlogs) as Blog[]
-  const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
+  const allPosts = sortedBlogPost(allBlogs) as Blog[]
+  const completedPosts = allPosts.filter((post) => post.draft === false)
+  const initialDisplayPosts = completedPosts.slice(0, POSTS_PER_PAGE)
   const pagination = {
     currentPage: 1,
-    totalPages: Math.ceil(posts.filter((post) => post.draft === false).length / POSTS_PER_PAGE),
+    totalPages: Math.ceil(completedPosts.length / POSTS_PER_PAGE),
   }
 
   return {
     props: {
       initialDisplayPosts: allCoreContent(initialDisplayPosts),
-      posts: allCoreContent(posts),
+      posts: allCoreContent(completedPosts),
       pagination,
     },
   }
