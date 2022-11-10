@@ -1,5 +1,5 @@
-import Link from '@/components/Link'
-import { PageSEO } from '@/components/SEO'
+import Link from '@/components/Link';
+import { PageSEO } from '@/components/SEO';
 
 export default function FourZeroFour() {
   return (
@@ -26,5 +26,5 @@ export default function FourZeroFour() {
         </div>
       </div>
     </>
-  )
+  );
 }
