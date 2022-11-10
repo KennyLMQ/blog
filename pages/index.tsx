@@ -11,8 +11,7 @@ import type { Blog } from 'contentlayer/generated'
 const MAX_DISPLAY = 5
 
 export const getStaticProps = async () => {
-  // const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
-  const sortedPosts = [] as Blog[]
+  const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
   const posts = allCoreContent(sortedPosts)
 
   return { props: { posts } }
