@@ -7,6 +7,7 @@ import { sortedBlogPost, allCoreContent } from 'pliny/utils/contentlayer';
 import { InferGetStaticPropsType } from 'next';
 import { allBlogs } from 'contentlayer/generated';
 import type { Blog } from 'contentlayer/generated';
+import Image from '@/components/Image';
 
 const MAX_DISPLAY = 5;
 
@@ -21,9 +22,27 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
+      <div>
+        <div className="flex flex-col-reverse flex-wrap items-center gap-8 sm:flex-row sm:gap-0">
+          <div className="flex basis-full justify-center sm:basis-1/2">
+            <Image
+              src="/static/images/building_microservices_2ed_comp.png"
+              alt="Building Microservices 2nd Edition"
+              width="195px"
+              height="256px"
+            />
+          </div>
+          <div className="basis-full sm:basis-1/2">
+            <div>
+              <h2 className="text-xl font-bold">Currently Reading:</h2>
+              <p>Building Microservices by Sam Newman</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 ">
             Latest
           </h1>
           {/* <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
