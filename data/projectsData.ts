@@ -7,6 +7,6 @@ const projectsData = [
     imgSrc: '/static/images/football-xg.png',
     href: 'https://football.kennylmq.com',
   },
-]
+];
 
-export default projectsData
+export default projectsData;
