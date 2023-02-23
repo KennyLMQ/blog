@@ -1,0 +1,56 @@
+---
+title: Much Ado About Node
+date: '2023-02-23'
+tags: ['node.js']
+draft: false
+summary: Useful Node.js commands.
+---
+
+During my usage of Node.js, there are certain tools I utilize frequently.
+[nvm](https://github.com/nvm-sh/nvm) (Node Version Manager) and
+[ncu](https://github.com/raineorshine/npm-check-updates) (npm-check-updates)
+are two that are installed whenever there is a need to setup a new development environment.
+
+# Node Version Manager
+
+`nvm` allows you to install and manage multiple Node.js versions in your environment.
+If you are using [Homebrew](https://formulae.brew.sh/formula/nvm),
+run `brew install nvm`, follow the prompts, and you will be able to start using it.
+There are more detailed instructions in [nvm's GitHub page](https://github.com/nvm-sh/nvm).
+There is also a Windows' version called [nvm-windows](https://github.com/coreybutler/nvm-windows),
+which has the basic functionalities of the bash version.
+
+These are some of the common commands I use for `nvm`:
+
+```bash
+nvm ls # list installed versions
+nvm ls-remote # list all remote versions
+
+nvm install 16 # install Node.js 16
+nvm install 18 # install Node.js 18
+
+nvm use 16 # use Node.js 16
+nvm use 18 # use Node.js 18
+
+# install a newer version and reinstall packages from an older version
+nvm install <new> --reinstall-packages-from=<old>
+```
+
+# npm-check-updates
+
+Once you have node and need a way to manage packages in a project, `ncu` aids in that.
+
+```bash
+npm i -g npm-check-updates # install ncu globally
+
+ncu # show packages that can be upgraded
+
+ncu -u # update the package.json in your project
+ncu -t minor -u # only perform minor upgrade
+ncu -t patch -u # only perform patch upgrade
+
+ncu -x esbuild # exculde certain packages from upgrades
+```
+
+You would still need to run `npm install` after running `ncu` to install the packages,
+as `ncu` only updates `package.json`.
